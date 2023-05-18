@@ -7,11 +7,11 @@ CREATE TABLE Categoria(
 );
 CREATE TABLE Metodo(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    categoria VARCHAR(50) NOT NULL
+    metodo VARCHAR(50) NOT NULL
 );
 CREATE TABLE Modalidad(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    categoria VARCHAR(40) NOT NULL
+    modalidad VARCHAR(40) NOT NULL
 );
 CREATE TABLE Productos(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
@@ -19,7 +19,7 @@ CREATE TABLE Productos(
     Producto_precio INT NOT NULL,
     producto_cantidad INT NOT NULL,
 	categoria_id INT NOT NULL, 
-    FOREIGN KEY (categoria_id) REFERENCES categoria(id)
+    FOREIGN KEY (Categoria_id) REFERENCES Categoria(id)
     );
     CREATE TABLE Usuario(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
@@ -28,24 +28,24 @@ CREATE TABLE Productos(
     mail VARCHAR(100) NOT NULL,
     direccion VARCHAR(100) NOT NULL,
 	modalidad_id INT NOT NULL, 
-    FOREIGN KEY (modalidad_id) REFERENCES modalidad(id)
+    FOREIGN KEY (Modalidad_id) REFERENCES Modalidad(id)
     );
     CREATE TABLE Pedido(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	producto_id INT NOT NULL, 
-    FOREIGN KEY (producto_id) REFERENCES productos(id)
+	productos_id INT NOT NULL, 
+    FOREIGN KEY (Productos_id) REFERENCES Productos(id)
     );
     CREATE TABLE Pago(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     monto INT NOT NULL,
     fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    pedido_id INT NOT NULL,
-    usuario_id INT NOT NULL,
-    metodo_id INT NOT NULL, 
-    FOREIGN KEY (pedido_id) REFERENCES pedido(id),
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id),
-    FOREIGN KEY (metodo_id) REFERENCES metodo(id)
+    Pedido_id INT NOT NULL,
+    Usuario_id INT NOT NULL,
+    Metodo_id INT NOT NULL, 
+    FOREIGN KEY (Pedido_id) REFERENCES Pedido(id),
+    FOREIGN KEY (Usuario_id) REFERENCES Usuario(id),
+    FOREIGN KEY (Metodo_id) REFERENCES Metodo(id)
     );
     CREATE TABLE Envio(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
